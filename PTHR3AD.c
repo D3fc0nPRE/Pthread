@@ -7,7 +7,7 @@
    void *print_message_function( void *ptr );
    int main()
 {
-     pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7;
+     pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8, thread9;
      const char *message1 = "Thread 1";
      const char *message2 = "Thread 2";
      const char *message3 = "Thread 3";
@@ -15,8 +15,10 @@
      const char *message5 = "Thread 5";
      const char *message6 = "Thread 6";
      const char *message7 = "Thread 7";
+     const char *message8 = "Thread 8";
+     const char *message9 = "Thread 9";
      
-     int iret1, iret2, iret3, iret4, iret5, iret6, iret7;
+     int iret1, iret2, iret3, iret4, iret5, iret6, iret7, iret8, iret9;
      iret1 = pthread_create( &thread1, NULL, print_message_function, (void*) message1);
      if(iret1)
      {
@@ -59,6 +61,18 @@
          fprintf(stderr, "ERROR-pthread_create() return code: %d\n", iret7);
           exit(EXIT_FAILURE);
        }
+     iret8 = pthread_create( &thread8, NULL, print_message_function, (void*) message8);
+     if(iret8)
+      {
+         fprintf(stderr, "ERROR-pthread_create() return code: %d\n", iret8);
+         exit(EXIT_FAILURE);
+      }
+      iret9 = pthread_create( &thread9, NULL, print_message_function, (void*) message9);
+      if(iret9)
+       {
+         fprintf(stderr, "ERROR-pthread_create() return code: %d\n", iret9);
+         exit(EXIT_FAILURE);
+        }
      printf("pthread_create() for thread 1 returns: %d\n", iret1);
      printf("pthread_create() for thread 2 returns: %d\n", iret2);
      printf("pthread_create() for thread 3 returns: %d\n", iret3);
@@ -66,6 +80,8 @@
      printf("pthread_create() for thread 5 returns: %d\n", iret5);  
      printf("pthread_create() for thread 6 returns: %d\n", iret6);
      printf("pthread_create() for thread 7 returns: %d\n", iret7);
+     printf("pthread_create() for thread 8 returns: %d\n", iret8);
+     printf("pthread_create() for thread 9 returns: %d\n", iret9);
      
      pthread_join(thread1, NULL);
      pthread_join(thread2, NULL); 
@@ -74,6 +90,8 @@
      pthread_join(thread5, NULL);
      pthread_join(thread6, NULL);
      pthread_join(thread7, NULL);
+     pthread_join(thread8, NULL);
+     pthread_join(thread9, NULL);
 
  /* YOU CAN INCREASE HOW MUCH YOU CAN BUT NOT COMPULSORY */
      exit(EXIT_SUCCESS);
