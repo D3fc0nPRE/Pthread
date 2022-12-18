@@ -7,7 +7,7 @@
    void *print_message_function( void *ptr );
    int main()
 {
-     pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8, thread9;
+     pthread_t thread1, thread2, thread3, thread4, thread5, thread6, thread7, thread8, thread9, thread10;
      const char *message1 = "Thread 1";
      const char *message2 = "Thread 2";
      const char *message3 = "Thread 3";
@@ -17,8 +17,9 @@
      const char *message7 = "Thread 7";
      const char *message8 = "Thread 8";
      const char *message9 = "Thread 9";
+    const char *message10 = "Thread 10";
      
-     int iret1, iret2, iret3, iret4, iret5, iret6, iret7, iret8, iret9;
+     int iret1, iret2, iret3, iret4, iret5, iret6, iret7, iret8, iret9, iret10;
      iret1 = pthread_create( &thread1, NULL, print_message_function, (void*) message1);
      if(iret1)
      {
@@ -73,6 +74,13 @@
          fprintf(stderr, "ERROR-pthread_create() return code: %d\n", iret9);
          exit(EXIT_FAILURE);
         }
+      iret10 = pthread_create( &thread10, NULL, print_message_function, (void*) message10);
+      if(iret10)
+        {
+            fprintf(stderr, "ERROR-pthread_create() return code: %d\n", iret10);
+            exit(EXIT_FAILURE);
+         }
+
      printf("pthread_create() for thread 1 returns: %d\n", iret1);
      printf("pthread_create() for thread 2 returns: %d\n", iret2);
      printf("pthread_create() for thread 3 returns: %d\n", iret3);
@@ -82,6 +90,7 @@
      printf("pthread_create() for thread 7 returns: %d\n", iret7);
      printf("pthread_create() for thread 8 returns: %d\n", iret8);
      printf("pthread_create() for thread 9 returns: %d\n", iret9);
+    printf("pthread_create() for thread 10 returns: %d\n", iret10);
      
      pthread_join(thread1, NULL);
      pthread_join(thread2, NULL); 
@@ -92,6 +101,7 @@
      pthread_join(thread7, NULL);
      pthread_join(thread8, NULL);
      pthread_join(thread9, NULL);
+     pthread_join(thread10, NULL);
 
  /* YOU CAN INCREASE HOW MUCH YOU CAN BUT NOT COMPULSORY */
      exit(EXIT_SUCCESS);
